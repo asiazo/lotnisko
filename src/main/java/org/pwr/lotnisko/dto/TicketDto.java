@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FlightDto
+public class TicketDto
 {
     long id;
-    String flightNumber;
-    String source;
-    String destination;
-    int freePlaces;
+    float price;
+    //long flightId;
+    FlightDto flight;
+    long userId;
 
     @JsonIgnore
     boolean success;

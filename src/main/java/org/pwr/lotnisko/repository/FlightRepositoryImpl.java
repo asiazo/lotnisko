@@ -26,4 +26,15 @@ public class FlightRepositoryImpl implements FlightRepository {
         flights.add(flightMapper.toFlight(flightDto));
         return true;
     }
+
+    @Override
+    public boolean removeFlight(FlightDto flightDto) {
+        flights.remove(flightMapper.toFlight(flightDto));
+        return true;
+    }
+
+    @Override
+    public FlightDto editFlight(FlightDto flightDto) {
+        return flightDto;
+    }
 }

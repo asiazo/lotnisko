@@ -5,18 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Date;
 
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FlightDto
+public class ReservationDto
 {
     long id;
-    String flightNumber;
-    String source;
-    String destination;
-    int freePlaces;
+    Date date;
+    TicketDto ticket;   // ? czy lista biletow? oraz Ticket czy TicketDto ?
+    FlightDto flight;
+    //reservationStatus
+    float reservationCost;
 
     @JsonIgnore
     boolean success;
