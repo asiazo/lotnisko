@@ -1,12 +1,13 @@
 package org.pwr.lotnisko.repository;
 
-import org.pwr.lotnisko.dto.FlightDto;
+import org.pwr.lotnisko.dto.Flight;
 
-public interface FlightRepository {
+public interface FlightRepository
+{
 
-    boolean addFlight(FlightDto flightDto);
+    boolean addFlight(Flight flight);
 
-    boolean removeFlight(FlightDto flightDto);
+    boolean removeFlight(Flight flight);
 
-    FlightDto editFlight(FlightDto flightDto);
+    Flight editFlight(Flight flight);
 }

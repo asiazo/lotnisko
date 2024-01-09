@@ -1,13 +1,13 @@
 package org.pwr.lotnisko.repository;
 
-import org.pwr.lotnisko.dto.TicketDto;
+import org.pwr.lotnisko.dto.Ticket;
 
 public interface TicketRepository
 {
-    boolean addTicket(TicketDto ticketDto);
+    boolean addTicket(Ticket ticket);
 
-    boolean removeTicket(TicketDto ticketDto);
+    boolean removeTicket(Ticket ticket);
 
-    TicketDto editTicket(TicketDto ticketDto);
+    Ticket editTicket(Ticket ticket);
 
 }

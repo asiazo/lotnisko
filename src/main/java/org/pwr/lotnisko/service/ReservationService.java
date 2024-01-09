@@ -1,14 +1,14 @@
 package org.pwr.lotnisko.service;
 
-import org.pwr.lotnisko.dto.ReservationDto;
+import org.pwr.lotnisko.dto.Reservation;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
 public interface ReservationService
 {
-    ReservationDto addReservation(ReservationDto reservationDto);
+    Reservation addReservation(Reservation reservation);
 
-    ReservationDto removeReservation(ReservationDto reservationDto);
+    Reservation removeReservation(Reservation reservation);
 
-    ReservationDto editReservation(ReservationDto reservationDto);
+    Reservation editReservation(Reservation reservation);
 }

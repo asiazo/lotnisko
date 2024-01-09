@@ -1,41 +1,34 @@
 package org.pwr.lotnisko.repository;
 
-import org.pwr.lotnisko.dto.ReservationDto;
+import org.pwr.lotnisko.dto.Reservation;
 import lombok.RequiredArgsConstructor;
-import org.mapstruct.factory.Mappers;
-import org.modelmapper.ModelMapper;
-import org.pwr.lotnisko.mapper.ReservationMapper;
-import org.pwr.lotnisko.model.Reservation;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
 public class ReservationRepositoryImpl implements ReservationRepository
 {
-
-    private final ModelMapper modelMapper = new ModelMapper();
-    private final ReservationMapper reservationMapper  = Mappers.getMapper(ReservationMapper.class);
 
     private final List<Reservation> reservations = new ArrayList<>();
 
     @Override
-    public boolean addReservation(ReservationDto reservationDto)
+    public boolean addReservation(Reservation reservation)
     {
-        reservations.add(reservationMapper.toReservation(reservationDto));
+        reservations.add(reservation);
         return false;
     }
 
     @Override
-    public boolean removeReservation(ReservationDto reservationDto)
+    public boolean removeReservation(Reservation reservation)
     {
-        reservations.remove(reservationMapper.toReservation(reservationDto));
+        reservations.remove(reservation);
         return false;
     }
 
     @Override
-    public boolean editReservation(ReservationDto reservationDto) {
+    public boolean editReservation(Reservation reservation) {
         return false;
     }
 }

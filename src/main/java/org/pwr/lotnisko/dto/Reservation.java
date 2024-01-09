@@ -11,13 +11,12 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReservationDto
+public class Reservation
 {
     long id;
     Date date;
-    TicketDto ticket;   // ? czy lista biletow? oraz Ticket czy TicketDto ?
-    FlightDto flight;
-    //reservationStatus
+    Ticket ticket;
+    Flight flight;
     float reservationCost;
 
     @JsonIgnore
