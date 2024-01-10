@@ -1,13 +1,20 @@
 package org.pwr.lotnisko.repository;
 
-import org.pwr.lotnisko.dto.Ticket;
+import org.pwr.lotnisko.model.Ticket;
 
-public interface TicketRepository
-{
-    boolean addTicket(Ticket ticket);
+import java.util.List;
+import java.util.Optional;
+
+
+public interface TicketRepository {
+    int addTicket(Ticket ticket);
 
     boolean removeTicket(Ticket ticket);
 
-    Ticket editTicket(Ticket ticket);
+    boolean editTicket(Ticket ticket);
+
+    List<Ticket> findAll();
+
+    Optional<Ticket> findById(long id);
 
 }

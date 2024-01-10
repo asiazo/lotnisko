@@ -1,13 +1,20 @@
 package org.pwr.lotnisko.repository;
 
-import org.pwr.lotnisko.dto.Flight;
+import org.pwr.lotnisko.model.Flight;
 
-public interface FlightRepository
-{
+import java.util.List;
+import java.util.Optional;
 
-    boolean addFlight(Flight flight);
 
-    boolean removeFlight(Flight flight);
+public interface FlightRepository {
 
-    Flight editFlight(Flight flight);
+    int addFlight(Flight flight);
+
+    void removeFlight(Flight flight);
+
+    boolean editFlight(Flight flight);
+
+    List<Flight> findAll();
+
+    Optional<Flight> findById(long id);
 }

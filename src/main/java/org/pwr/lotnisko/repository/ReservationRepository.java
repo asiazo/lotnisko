@@ -1,10 +1,10 @@
 package org.pwr.lotnisko.repository;
 
-import org.pwr.lotnisko.dto.Reservation;
+import org.pwr.lotnisko.model.Reservation;
 
 public interface ReservationRepository
 {
-    boolean addReservation(Reservation reservation);
+    int addReservation(Reservation reservation);
 
     boolean removeReservation(Reservation reservation);
 

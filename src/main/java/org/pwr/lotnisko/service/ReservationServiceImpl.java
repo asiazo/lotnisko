@@ -1,21 +1,38 @@
 package org.pwr.lotnisko.service;
 
 import lombok.RequiredArgsConstructor;
-import org.pwr.lotnisko.dto.Reservation;
+import org.pwr.lotnisko.dto.ReservationTO;
+import org.pwr.lotnisko.model.Reservation;
+import org.pwr.lotnisko.model.Ticket;
 import org.pwr.lotnisko.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.Random;
+
+
 @Service
 @RequiredArgsConstructor
-public class ReservationServiceImpl implements ReservationService
-{
+public class ReservationServiceImpl implements ReservationService {
+
     private final ReservationRepository reservationRepository;
 
+    private final TicketService ticketService;
+
     @Override
-    public Reservation addReservation(Reservation reservation)
-    {
-        boolean success = reservationRepository.addReservation(reservation);
-        return Reservation.builder().id(1).success(success).build();
+    public Reservation addReservation(ReservationTO reservationTO) {
+        float reservationCost = 100 + (new Random().nextFloat() * (1000 - 100));
+        Ticket ticket = ticketService.addTicket(reservationTO.getTicket());
+        Reservation reservation = Reservation.builder()
+                .ticket(ticket)
+                .reservationCost(reservationCost + ticket.getPrice())
+                .flight(ticket.getFlight())
+                .date(new Date())
+                .build();
+
+        int reservationId = reservationRepository.addReservation(reservation);
+        reservation.setId(reservationId);
+        return reservation;
     }
 
     @Override

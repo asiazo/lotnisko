@@ -1,8 +1,6 @@
 package org.pwr.lotnisko.repository;
 
-import org.pwr.lotnisko.dto.Reservation;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.pwr.lotnisko.model.Reservation;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,10 +12,9 @@ public class ReservationRepositoryImpl implements ReservationRepository
     private final List<Reservation> reservations = new ArrayList<>();
 
     @Override
-    public boolean addReservation(Reservation reservation)
-    {
+    public int addReservation(Reservation reservation) {
         reservations.add(reservation);
-        return false;
+        return reservations.indexOf(reservation);
     }
 
     @Override

@@ -1,12 +1,12 @@
 package org.pwr.lotnisko.service;
 
-import lombok.RequiredArgsConstructor;
-import org.pwr.lotnisko.dto.Ticket;
-import org.springframework.stereotype.Service;
+import org.pwr.lotnisko.dto.TicketTO;
+import org.pwr.lotnisko.model.Ticket;
+
 
 public interface TicketService
 {
-    Ticket addTicket(Ticket ticket);
+    Ticket addTicket(TicketTO ticket);
 
     boolean removeTicket(Ticket ticket);
 

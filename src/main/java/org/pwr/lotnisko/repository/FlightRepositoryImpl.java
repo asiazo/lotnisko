@@ -1,34 +1,47 @@
 package org.pwr.lotnisko.repository;
 
-import lombok.RequiredArgsConstructor;
-import org.pwr.lotnisko.dto.Flight;
-import org.springframework.stereotype.Repository;
+import org.pwr.lotnisko.model.Flight;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 
 @Service
-public class FlightRepositoryImpl implements FlightRepository
-{
-    private final List<Flight> flights = new ArrayList<>();
+public class FlightRepositoryImpl implements FlightRepository {
+
+    private final List<Flight> flights = List.of(
+            Flight.builder().id(0).flightNumber("LAX1234").source("Warsaw").destination("Los Angeles").freePlaces(50).build()
+                                                );
 
     @Override
-    public boolean addFlight(Flight flight)
-    {
+    public int addFlight(Flight flight) {
         flights.add(flight);
-        return true;
+        return flights.indexOf(flight);
     }
 
     @Override
-    public boolean removeFlight(Flight flight)
-    {
+    public void removeFlight(Flight flight) {
         flights.remove(flight);
+    }
+
+    @Override
+    public boolean editFlight(Flight flight) {
+        boolean exists = flights.stream().anyMatch(f -> f.getId() == flight.getId());
+        if (!exists) {
+            return false;
+        }
+        flights.replaceAll(f -> f.getId() == flight.getId() ? flight : f);
         return true;
     }
 
     @Override
-    public Flight editFlight(Flight flight) {
-        return flight;
+    public List<Flight> findAll() {
+        return flights;
+    }
+
+    @Override
+    public Optional<Flight> findById(final long id) {
+        return flights.stream().filter(flight -> flight.getId() == id).findFirst();
     }
 }
