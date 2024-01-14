@@ -3,11 +3,13 @@ package org.pwr.lotnisko.service;
 import lombok.RequiredArgsConstructor;
 import org.pwr.lotnisko.dto.ReservationTO;
 import org.pwr.lotnisko.model.Reservation;
+import org.pwr.lotnisko.model.ReservationStatus;
 import org.pwr.lotnisko.model.Ticket;
 import org.pwr.lotnisko.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -36,7 +38,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public Reservation removeReservation(Reservation reservation) {
+    public Reservation deleteReservation(Reservation reservation) {
         return null;
     }
 
@@ -44,4 +46,7 @@ public class ReservationServiceImpl implements ReservationService {
     public Reservation editReservation(Reservation reservation) {
         return null;
     }
+
+    @Override
+    public Reservation processReservation(Reservation reservation) { return null; }
 }
