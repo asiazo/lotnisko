@@ -2,15 +2,20 @@ package org.pwr.lotnisko.controller;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
+import org.mockito.Mock;
+import org.pwr.lotnisko.dto.CheckInTo;
 import org.pwr.lotnisko.dto.EmployeeTO;
 import org.pwr.lotnisko.dto.ReservationTO;
 import org.pwr.lotnisko.dto.TicketTO;
+import org.pwr.lotnisko.model.CheckIn;
+import org.pwr.lotnisko.model.CheckInStatus;
 import org.pwr.lotnisko.model.DiscountType;
 import org.pwr.lotnisko.model.Employee;
 import org.pwr.lotnisko.model.EmployeeRole;
 import org.pwr.lotnisko.model.Flight;
 import org.pwr.lotnisko.model.Reservation;
 import org.pwr.lotnisko.model.Ticket;
+import org.pwr.lotnisko.service.CheckInService;
 import org.pwr.lotnisko.service.EmployeeService;
 import org.pwr.lotnisko.service.ReservationService;
 import org.pwr.lotnisko.testutils.JsonUtils;
@@ -43,6 +48,9 @@ class AirportFacadeControllerTest {
 
     @MockBean
     private EmployeeService employeeService;
+
+    @MockBean
+    private CheckInService checkInService;
 
     @Test
     void zakupBiletu_shouldReturnReservationWithTicket() throws Exception {
@@ -99,5 +107,30 @@ class AirportFacadeControllerTest {
         // then
         result.andExpect(status().isOk())
                 .andExpect(content().string(JsonUtils.getJson(employee)));
+    }
+
+    @Test
+    void checkIn_shouldReturnCheckInInformation_http200() throws Exception {
+        // given
+        CheckInTo checkInTo = CheckInTo.builder()
+                .checkInStatus(CheckInStatus.CHECK_IN_PENDING)
+                .build();
+
+        CheckInTo expectedResult = CheckInTo.builder()
+                .checkInStatus(CheckInStatus.CHECK_IN_COMPLETED)
+                .build();
+
+        when(checkInService.processWithCheckin(checkInTo))
+                .thenReturn(expectedResult);
+
+        // when
+        ResultActions result = mvc.perform(post("/api/v1/checkIn")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtils.getJson(checkInTo)));
+
+
+        // then
+        result.andExpect(status().isOk())
+                .andExpect(content().string(JsonUtils.getJson(expectedResult)));
     }
 }

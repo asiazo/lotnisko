@@ -1,5 +1,6 @@
 package org.pwr.lotnisko.api;
 
+import org.pwr.lotnisko.dto.CheckInTo;
 import org.pwr.lotnisko.dto.EmployeeTO;
 import org.pwr.lotnisko.dto.ReservationTO;
 import org.pwr.lotnisko.model.Employee;
@@ -18,4 +19,7 @@ public interface AirportFacade {
 
     @PostMapping("dodajNowegoPracownika")
     Employee dodajNowegoPracownika(@RequestBody EmployeeTO employeeTO);
+
+    @PostMapping("checkIn")
+    CheckInTo checkIn(@RequestBody CheckInTo CheckInTo);
 }

@@ -1,7 +1,8 @@
-package org.pwr.lotnisko.service;
+package org.pwr.lotnisko.repository;
 
 import org.pwr.lotnisko.dto.CheckInTo;
 
-public interface CheckInService {
+
+public interface CheckinRepository {
     CheckInTo processWithCheckin(CheckInTo checkInTo);
 }
