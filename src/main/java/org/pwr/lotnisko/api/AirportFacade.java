@@ -20,6 +20,6 @@ public interface AirportFacade {
     @PostMapping("dodajNowegoPracownika")
     Employee dodajNowegoPracownika(@RequestBody EmployeeTO employeeTO);
 
-    @PostMapping("dodajNowegoPracownika")
+    @PostMapping("checkIn")
     CheckInTo checkIn(@RequestBody CheckInTo CheckInTo);
 }

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AirportFacadeController implements AirportFacade {
     private final ReservationService reservationService;
     private final EmployeeService employeeService;
-    private CheckInService checkInService;
+    private final CheckInService checkInService;
 
     @Override
     public Reservation zakupBiletu(ReservationTO reservationTO) {
