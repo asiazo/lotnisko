@@ -1,5 +1,6 @@
 package org.pwr.lotnisko.controller;
 
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
@@ -89,7 +90,7 @@ class AirportFacadeControllerTest {
     }
 
     @Test
-    void dodajNowegoPracownika() throws Exception {
+    void dodajNowegoPracownika_shouldAddNewEmployee() throws Exception {
         // given
         Employee employee = Employee.builder()
                 .id(1)
@@ -107,6 +108,24 @@ class AirportFacadeControllerTest {
         // then
         result.andExpect(status().isOk())
                 .andExpect(content().string(JsonUtils.getJson(employee)));
+    }
+
+    @Test
+    void dodajNowegoPracownika_ShouldntAddNewEmployee() throws Exception {
+
+        // given
+        EmployeeTO employeeTO = EmployeeTO.builder().id(1).build();
+
+        when(employeeService.addEmployee(any(EmployeeTO.class))).thenReturn(null);
+
+        // when
+        ResultActions result = mvc.perform(post("/api/v1/dodajNowegoPracownika")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtils.getJson(employeeTO)));
+
+        // then
+        result.andExpect(status().isOk())
+                .andExpect(content().string(""));
     }
 
     @Test

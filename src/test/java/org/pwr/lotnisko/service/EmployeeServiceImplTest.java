@@ -10,6 +10,8 @@ import org.pwr.lotnisko.dto.EmployeeTO;
 import org.pwr.lotnisko.model.Employee;
 import org.pwr.lotnisko.repository.EmployeeRepository;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -18,14 +20,14 @@ import static org.mockito.Mockito.when;
 class EmployeeServiceImplTest {
 
     @Mock
-    private EmployeeRepository emplyeeRepository;
+    private EmployeeRepository employeeRepository;
 
     @InjectMocks
     EmployeeServiceImpl employeeService;
 
     @BeforeEach
     void setUp() {
-        employeeService = new EmployeeServiceImpl(emplyeeRepository);
+        employeeService = new EmployeeServiceImpl(employeeRepository);
     }
 
     @Test
@@ -33,8 +35,8 @@ class EmployeeServiceImplTest {
         // given
         EmployeeTO employeeTO = EmployeeTO.builder().id(1).build();
 
-        when(emplyeeRepository.searchEmployee(any())).thenReturn(false);
-        when(emplyeeRepository.addEmployee(any())).thenReturn(2);
+        when(employeeRepository.searchEmployee(any())).thenReturn(false);
+        when(employeeRepository.addEmployee(any())).thenReturn(2);
 
         // when
         Employee result = employeeService.addEmployee(employeeTO);
@@ -42,4 +44,22 @@ class EmployeeServiceImplTest {
         // then
         assertThat(result.getFirstName()).isEqualTo("Andrzej");
     }
+
+    @Test
+    void addEmployee_shouldntAddNewEmployee() {
+
+        // Proba dodania pracownika, ktory jest juz zatrudniony
+
+        // given
+        EmployeeTO employeeTO = EmployeeTO.builder().id(1).build();
+
+        when(employeeRepository.searchEmployee(any())).thenReturn(true);
+
+        // when
+        Employee result = employeeService.addEmployee(employeeTO);
+
+        // then
+        assertThat(result).isNull();
+    }
+
 }
