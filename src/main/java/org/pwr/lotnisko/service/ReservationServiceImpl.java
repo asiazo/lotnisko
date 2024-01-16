@@ -28,7 +28,6 @@ public class ReservationServiceImpl implements ReservationService {
         Reservation reservation = Reservation.builder()
                 .ticket(ticket)
                 .reservationCost(reservationCost + ticket.getPrice())
-                .flight(ticket.getFlight())
                 .date(new Date())
                 .build();
 
