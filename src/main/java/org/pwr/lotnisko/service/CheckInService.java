@@ -1,5 +1,7 @@
 package org.pwr.lotnisko.service;
 
-public interface CheckInService {
+import org.pwr.lotnisko.dto.CheckInTo;
 
+public interface CheckInService {
+    CheckInTo processWithCheckin(CheckInTo checkInTo);
 }

@@ -9,14 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckinRepositorylmpl implements CheckinRepository {
-    private TicketRepository ticketRepository;
-    private ReservationRepository reservationRepository;
+
     private List<CheckIn> checkins = new ArrayList<>();
     private  List<CheckInHandler> checkinsHandles = new ArrayList<>();
 
-    public CheckinRepositorylmpl(FlightRepository flightRepository, TicketRepository biletRepository, ReservationRepository reservationRepository) {
-        this.ticketRepository = ticketRepository;
-        this.reservationRepository = reservationRepository;
+    public CheckinRepositorylmpl(FlightRepository flightRepository, ReservationRepository reservationRepository) {
         Validator validator = new Validator(flightRepository, reservationRepository);
         AuthenticationHandler authenticationHandler = new AuthenticationHandler(validator);
         checkinsHandles.add(authenticationHandler);
