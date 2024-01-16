@@ -1,5 +1,6 @@
 package org.pwr.lotnisko.repository;
 
+import org.pwr.lotnisko.dto.CheckInTo;
 import org.pwr.lotnisko.model.Flight;
 
 import java.util.List;
@@ -17,4 +18,10 @@ public interface FlightRepository {
     List<Flight> findAll();
 
     Optional<Flight> findById(long id);
+
+    boolean vadateFlightNumber(CheckInTo checkInTo);
+
+    String selectSeat(CheckInTo checkInTo);
+
+    void addExtraLuggage(CheckInTo checkInTo);
 }

@@ -1,9 +1,7 @@
 package org.pwr.lotnisko.repository;
 
-import org.pwr.lotnisko.model.CheckIn;
+import org.pwr.lotnisko.dto.CheckInTo;
 
 public interface CheckinRepository {
-    void CheckinRepositorylmpl(TicketRepository biletRepository, FlightRepository lotRepository);
-
-    boolean processWithCheckin(CheckIn checkIn);
+    CheckInTo processWithCheckin(CheckInTo checkInTo);
 }

@@ -1,21 +1,47 @@
 package org.pwr.lotnisko.repository;
 
-import org.pwr.lotnisko.checkInHandler.CheckInHandler;
+import org.pwr.lotnisko.dto.CheckInTo;
+import org.pwr.lotnisko.handler.*;
 import org.pwr.lotnisko.model.CheckIn;
+import org.pwr.lotnisko.model.CheckInStatus;
 
-public class CheckinRepositorylmpl {
+import java.util.ArrayList;
+import java.util.List;
+
+public class CheckinRepositorylmpl implements CheckinRepository {
     private TicketRepository ticketRepository;
     private ReservationRepository reservationRepository;
-    private CheckIn[] checkins;
-    private CheckInHandler[] checkinsHandles;
+    private List<CheckIn> checkins = new ArrayList<>();
+    private  List<CheckInHandler> checkinsHandles = new ArrayList<>();
 
-    public CheckinRepositorylmpl(TicketRepository biletRepository, ReservationRepository reservationRepository) {
+    public CheckinRepositorylmpl(FlightRepository flightRepository, TicketRepository biletRepository, ReservationRepository reservationRepository) {
         this.ticketRepository = ticketRepository;
         this.reservationRepository = reservationRepository;
-
+        Validator validator = new Validator(flightRepository, reservationRepository);
+        AuthenticationHandler authenticationHandler = new AuthenticationHandler(validator);
+        checkinsHandles.add(authenticationHandler);
+        SeatSelectionHandler seatSelectionHandler = new SeatSelectionHandler(validator);
+        checkinsHandles.add(seatSelectionHandler);
+        LuggageHandler luggageHandler = new LuggageHandler(validator);
+        checkinsHandles.add(luggageHandler);
     }
 
-    public boolean processWithCheckin(CheckIn checkIn) {
-        return true;
+    @Override
+    public CheckInTo processWithCheckin(CheckInTo checkInTo) {
+        checkInTo.setCheckInStatus(CheckInStatus.CHECK_IN_PENDING);
+        checkinsHandles.get(0).apply(checkInTo);
+        int id = checkins.size();
+        if (checkInTo.getCheckInStatus() == CheckInStatus.CHECK_IN_IN_PROGRESS) {
+            CheckIn check = new CheckIn(checkInTo.getId(), checkInTo.getDate(), checkInTo.getTicket(), checkInTo.getCheckInStatus());
+            checkins.add(check);
+            checkinsHandles.get(1).apply(checkInTo);
+        }
+        if (checkInTo.getCheckInStatus() == CheckInStatus.CHECK_IN_IN_PROGRESS_SEET) {
+            checkinsHandles.get(2).apply(checkInTo);
+        }
+        if (checkInTo.getCheckInStatus() == CheckInStatus.CHECK_IN_COMPLETED) {
+            checkins.get(id).setCheckInStatus(CheckInStatus.CHECK_IN_COMPLETED);
+        }
+        return checkInTo;
     }
 }
