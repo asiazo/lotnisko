@@ -3,6 +3,7 @@ package org.pwr.lotnisko.repository;
 import org.pwr.lotnisko.model.Flight;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,9 +11,9 @@ import java.util.Optional;
 @Service
 public class FlightRepositoryImpl implements FlightRepository {
 
-    private final List<Flight> flights = List.of(
-            Flight.builder().id(0).flightNumber("LAX1234").source("Warsaw").destination("Los Angeles").freePlaces(50).build()
-                                                );
+    private final List<Flight> flights = new ArrayList<>();
+
+
 
     @Override
     public int addFlight(Flight flight) {

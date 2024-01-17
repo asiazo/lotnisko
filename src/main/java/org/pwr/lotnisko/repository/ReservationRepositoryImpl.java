@@ -1,15 +1,14 @@
 package org.pwr.lotnisko.repository;
 
 import org.pwr.lotnisko.model.Reservation;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-@Service
-public class ReservationRepositoryImpl implements ReservationRepository
-{
+@Component
+public class ReservationRepositoryImpl implements ReservationRepository {
 
-    private final List<Reservation> reservations = new ArrayList<>();
+    private List<Reservation> reservations = new ArrayList<>();
 
     @Override
     public int addReservation(Reservation reservation) {

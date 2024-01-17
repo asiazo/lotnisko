@@ -1,5 +1,6 @@
 package org.pwr.lotnisko.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +22,9 @@ public class Reservation {
     Ticket ticket;
 
     float reservationCost;
+
+    @JsonIgnore
+    boolean success;
 
     //PersonalData user;
     //ReservationStatus reservationStatus;

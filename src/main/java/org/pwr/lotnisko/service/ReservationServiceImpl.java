@@ -2,6 +2,7 @@ package org.pwr.lotnisko.service;
 
 import lombok.RequiredArgsConstructor;
 import org.pwr.lotnisko.dto.ReservationTO;
+import org.pwr.lotnisko.model.Flight;
 import org.pwr.lotnisko.model.Reservation;
 import org.pwr.lotnisko.model.ReservationStatus;
 import org.pwr.lotnisko.model.Ticket;
@@ -21,14 +22,24 @@ public class ReservationServiceImpl implements ReservationService {
 
     private final TicketService ticketService;
 
+    private final FlightService flightService;
+
     @Override
     public Reservation addReservation(ReservationTO reservationTO) {
         float reservationCost = 100 + (new Random().nextFloat() * (1000 - 100));
+
+        Flight flight = flightService.findById(reservationTO.getTicket().getFlightId());
+
+        if (flight.getFreePlaces() == 0) {
+            return Reservation.builder().success(false).build();
+        }
+
         Ticket ticket = ticketService.addTicket(reservationTO.getTicket());
         Reservation reservation = Reservation.builder()
                 .ticket(ticket)
                 .reservationCost(reservationCost + ticket.getPrice())
                 .date(new Date())
+                .success(true)
                 .build();
 
         int reservationId = reservationRepository.addReservation(reservation);
