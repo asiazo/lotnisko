@@ -20,8 +20,6 @@ public class Reservation {
 
     Ticket ticket;
 
-    Flight flight;
-
     float reservationCost;
 
     //PersonalData user;
