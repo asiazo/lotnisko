@@ -31,14 +31,14 @@ class SeatSelectionHandlerTest {
     @BeforeEach
     void setUp() {
         seatSelectionHandler = new SeatSelectionHandler(validator);
-        System.setOut(new PrintStream(outputStreamCaptor)); // for capturing System.out prints
+        System.setOut(new PrintStream(outputStreamCaptor));
     }
 
     @Test
     void apply_withAvailableSeats_shouldSelectSeat() {
         // given
-        Ticket ticket = new Ticket(); // Assume Ticket is properly initialized
-        Flight flight = new Flight(); // Assume Flight is properly initialized with free places
+        Ticket ticket = new Ticket();
+        Flight flight = new Flight();
         flight.setFreePlaces(1);
         ticket.setFlight(flight);
         CheckInTo checkInTo = new CheckInTo();
@@ -56,8 +56,8 @@ class SeatSelectionHandlerTest {
     @Test
     void apply_withNoAvailableSeats_shouldNotSelectSeat() {
         // given
-        Ticket ticket = new Ticket(); // Assume Ticket is properly initialized
-        Flight flight = new Flight(); // Assume Flight is properly initialized with no free places
+        Ticket ticket = new Ticket();
+        Flight flight = new Flight();
         flight.setFreePlaces(0);
         ticket.setFlight(flight);
         CheckInTo checkInTo = new CheckInTo();

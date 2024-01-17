@@ -34,7 +34,7 @@ class ValidatorTest {
 
     @BeforeEach
     void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor)); // for capturing System.out prints
+        System.setOut(new PrintStream(outputStreamCaptor));
     }
 
     @Test
