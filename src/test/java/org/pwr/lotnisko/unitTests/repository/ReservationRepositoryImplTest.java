@@ -1,4 +1,4 @@
-package org.pwr.lotnisko.repository;
+package org.pwr.lotnisko.unitTests.repository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +9,8 @@ import org.pwr.lotnisko.model.DiscountType;
 import org.pwr.lotnisko.model.Flight;
 import org.pwr.lotnisko.model.Reservation;
 import org.pwr.lotnisko.model.Ticket;
+import org.pwr.lotnisko.repository.ReservationRepositoryImpl;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Date;

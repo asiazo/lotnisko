@@ -1,4 +1,4 @@
-package org.pwr.lotnisko.service;
+package org.pwr.lotnisko.unitTests.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +13,9 @@ import org.pwr.lotnisko.model.Flight;
 import org.pwr.lotnisko.model.Reservation;
 import org.pwr.lotnisko.model.Ticket;
 import org.pwr.lotnisko.repository.ReservationRepository;
+import org.pwr.lotnisko.service.FlightService;
+import org.pwr.lotnisko.service.ReservationServiceImpl;
+import org.pwr.lotnisko.service.TicketService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -51,7 +54,7 @@ class ReservationServiceImplTest {
     @Test
     void addReservation_shouldCreateATicketForPlane_success() {
         // given
-                Flight flight = Flight.builder()
+        Flight flight = Flight.builder()
                 .id(1L)
                 .flightNumber("LAX1234")
                 .source("Warsaw")

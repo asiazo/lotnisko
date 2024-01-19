@@ -1,8 +1,9 @@
-package org.pwr.lotnisko.repository;
+package org.pwr.lotnisko.unitTests.repository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.pwr.lotnisko.model.Flight;
+import org.pwr.lotnisko.repository.FlightRepositoryImpl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

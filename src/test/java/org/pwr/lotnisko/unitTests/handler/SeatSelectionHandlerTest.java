@@ -1,4 +1,4 @@
-package org.pwr.lotnisko.handler;
+package org.pwr.lotnisko.unitTests.handler;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,6 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.pwr.lotnisko.dto.CheckInTo;
+import org.pwr.lotnisko.handler.SeatSelectionHandler;
+import org.pwr.lotnisko.handler.Validator;
 import org.pwr.lotnisko.model.CheckInStatus;
 import org.pwr.lotnisko.model.Flight;
 import org.pwr.lotnisko.model.Ticket;

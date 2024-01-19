@@ -1,4 +1,4 @@
-package org.pwr.lotnisko.controller;
+package org.pwr.lotnisko.unitTests.controller;
 
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import org.pwr.lotnisko.model.Ticket;
 import org.pwr.lotnisko.service.CheckInService;
 import org.pwr.lotnisko.service.EmployeeService;
 import org.pwr.lotnisko.service.ReservationService;
-import org.pwr.lotnisko.testutils.JsonUtils;
+import org.pwr.lotnisko.unitTests.testUtils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;

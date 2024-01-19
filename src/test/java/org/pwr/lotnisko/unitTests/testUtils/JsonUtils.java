@@ -1,4 +1,4 @@
-package org.pwr.lotnisko.testutils;
+package org.pwr.lotnisko.unitTests.testUtils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;

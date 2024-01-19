@@ -1,4 +1,4 @@
-package org.pwr.lotnisko.service;
+package org.pwr.lotnisko.unitTests.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.pwr.lotnisko.dto.EmployeeTO;
 import org.pwr.lotnisko.model.Employee;
 import org.pwr.lotnisko.repository.EmployeeRepository;
+import org.pwr.lotnisko.service.EmployeeServiceImpl;
 
 import java.util.Optional;
 

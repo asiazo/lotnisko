@@ -9,7 +9,7 @@ import org.pwr.lotnisko.repository.ReservationRepository;
 import java.util.Scanner;
 
 public class Validator {
-    protected FlightRepository flightService;
+    public FlightRepository flightService;
     protected ReservationRepository reservationService;
 
     public Validator(FlightRepository flightService, ReservationRepository reservationService) {
