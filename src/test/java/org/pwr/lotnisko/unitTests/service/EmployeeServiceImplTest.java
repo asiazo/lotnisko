@@ -34,16 +34,16 @@ class EmployeeServiceImplTest {
     @Test
     void addEmployee_shouldAddNewEmployee() {
         // given
-        EmployeeTO employeeTO = EmployeeTO.builder().id(1).build();
+        Employee employee = Employee.builder().id(1).build();
 
         when(employeeRepository.searchEmployee(any())).thenReturn(false);
         when(employeeRepository.addEmployee(any())).thenReturn(2);
 
         // when
-        Employee result = employeeService.addEmployee(employeeTO);
+        Employee result = employeeService.addEmployee(employee);
 
         // then
-        assertThat(result.getFirstName()).isEqualTo("Andrzej");
+        assertThat(result.getFirstName()).isEqualTo(employee.getFirstName());
     }
 
     @Test
@@ -52,12 +52,12 @@ class EmployeeServiceImplTest {
         // Proba dodania pracownika, ktory jest juz zatrudniony
 
         // given
-        EmployeeTO employeeTO = EmployeeTO.builder().id(1).build();
+        Employee employee = Employee.builder().id(1).build();
 
         when(employeeRepository.searchEmployee(any())).thenReturn(true);
 
         // when
-        Employee result = employeeService.addEmployee(employeeTO);
+        Employee result = employeeService.addEmployee(employee);
 
         // then
         assertThat(result).isNull();

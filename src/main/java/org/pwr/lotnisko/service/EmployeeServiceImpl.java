@@ -35,18 +35,16 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Employee addEmployee(EmployeeTO employeeTO) {
+    public Employee addEmployee(Employee employee) {
+
+        EmployeeTO employeeTO = EmployeeTO.builder()
+                .id(employee.getId())
+                .build();
 
         boolean isEmployed = emplyeeRepository.searchEmployee(employeeTO);
 
         if(!isEmployed)
         {
-            Employee employee = Employee.builder()
-                    .firstName("Andrzej")
-                    .secondName("Zawadzki")
-                    .role(EmployeeRole.ADMIN)
-                    .build();
-
             int employeeId = emplyeeRepository.addEmployee(employee);
             employee.setId(employeeId);
             return employee;

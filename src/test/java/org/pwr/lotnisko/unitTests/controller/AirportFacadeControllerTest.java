@@ -98,12 +98,12 @@ class AirportFacadeControllerTest {
                 .secondName("Test SecondName").role(EmployeeRole.WORKER)
                 .build();
 
-        when(employeeService.addEmployee(any(EmployeeTO.class))).thenReturn(employee);
+        when(employeeService.addEmployee(any(Employee.class))).thenReturn(employee);
 
         // when
         ResultActions result = mvc.perform(post("/api/v1/dodajNowegoPracownika")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtils.getJson(EmployeeTO.builder().id(1).build())));
+                .content(JsonUtils.getJson(Employee.builder().id(1).build())));
 
         // then
         result.andExpect(status().isOk())
@@ -114,14 +114,14 @@ class AirportFacadeControllerTest {
     void dodajNowegoPracownika_ShouldntAddNewEmployee() throws Exception {
 
         // given
-        EmployeeTO employeeTO = EmployeeTO.builder().id(1).build();
+        Employee employee = Employee.builder().id(1).build();
 
-        when(employeeService.addEmployee(any(EmployeeTO.class))).thenReturn(null);
+        when(employeeService.addEmployee(any(Employee.class))).thenReturn(null);
 
         // when
         ResultActions result = mvc.perform(post("/api/v1/dodajNowegoPracownika")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtils.getJson(employeeTO)));
+                .content(JsonUtils.getJson(employee)));
 
         // then
         result.andExpect(status().isOk())
