@@ -1,5 +1,6 @@
 package org.pwr.lotnisko.controller;
 
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.pwr.lotnisko.api.AirportFacade;
 import org.pwr.lotnisko.dto.CheckInTo;
@@ -12,8 +13,8 @@ import org.pwr.lotnisko.service.CheckInServiceImpl;
 import org.pwr.lotnisko.service.EmployeeService;
 import org.pwr.lotnisko.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
-
 
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -35,9 +36,9 @@ public class AirportFacadeController implements AirportFacade {
     }
 
     @Override
-    public Employee dodajNowegoPracownika(EmployeeTO employeeTO) {
+    public Employee dodajNowegoPracownika(Employee employee) {
 
-        Employee employeeResult = employeeService.addEmployee(employeeTO);
+        Employee employeeResult = employeeService.addEmployee(employee);
 
         if(employeeResult != null)
             return employeeResult;

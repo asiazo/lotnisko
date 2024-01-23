@@ -18,7 +18,7 @@ public interface AirportFacade {
     Reservation zakupBiletu(@RequestBody ReservationTO reservationTO);
 
     @PostMapping("dodajNowegoPracownika")
-    Employee dodajNowegoPracownika(@RequestBody EmployeeTO employeeTO);
+    Employee dodajNowegoPracownika(@RequestBody Employee employee);
 
     @PostMapping("checkIn")
     CheckInTo checkIn(@RequestBody CheckInTo CheckInTo);
