@@ -22,4 +22,7 @@ public interface AirportFacade {
 
     @PostMapping("checkIn")
     CheckInTo checkIn(@RequestBody CheckInTo CheckInTo);
+
+     @PostMapping("edycjaRezerwacji")
+    Reservation edycjaRezerwacji(@RequestBody Reservation reservation);
 }
