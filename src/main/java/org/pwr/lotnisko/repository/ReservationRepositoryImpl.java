@@ -23,8 +23,31 @@ public class ReservationRepositoryImpl implements ReservationRepository {
         return false;
     }
 
-    @Override
+   @Override
     public boolean editReservation(Reservation reservation) {
+        int index = reservations.indexOf(reservation);
+        if(index != -1) {
+            reservations.remove(index);
+            reservations.add(index, reservation);
+            return true;
+        }
         return false;
+    }
+    
+    @Override
+    public Reservation findById(long id)
+    {
+        for (Reservation reservation : reservations) {
+            if (reservation.getId() == id) {
+                return reservation;
+            }
+        }
+        return null;
+    }
+    
+    @Override
+    public Reservation save(Reservation reservation)
+    {
+        return reservationRepository.save(reservation);
     }
 }
