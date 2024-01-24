@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 @Component
 public class ReservationRepositoryImpl implements ReservationRepository {
 
@@ -17,26 +19,24 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     }
 
     @Override
-    public boolean removeReservation(Reservation reservation)
-    {
+    public boolean removeReservation(Reservation reservation) {
         reservations.remove(reservation);
         return false;
     }
 
-   @Override
+    @Override
     public boolean editReservation(Reservation reservation) {
         int index = reservations.indexOf(reservation);
-        if(index != -1) {
+        if (index != -1) {
             reservations.remove(index);
             reservations.add(index, reservation);
             return true;
         }
         return false;
     }
-    
+
     @Override
-    public Reservation findById(long id)
-    {
+    public Reservation findById(long id) {
         for (Reservation reservation : reservations) {
             if (reservation.getId() == id) {
                 return reservation;
@@ -44,10 +44,11 @@ public class ReservationRepositoryImpl implements ReservationRepository {
         }
         return null;
     }
-    
+
     @Override
-    public Reservation save(Reservation reservation)
-    {
-        return reservationRepository.save(reservation);
+    public Reservation save(Reservation reservation) {
+        int id = addReservation(reservation);
+        reservation.setId(id);
+        return reservation;
     }
 }

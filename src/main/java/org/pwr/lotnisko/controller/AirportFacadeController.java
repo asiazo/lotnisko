@@ -57,9 +57,9 @@ public class AirportFacadeController implements AirportFacade {
         // return null;
         return new CheckInTo();
     }
-        @Override
-    public Reservation edycjaRezerwacji(Reservation reservation)
-    {
+
+    @Override
+    public Reservation edycjaRezerwacji(Reservation reservation) {
         Reservation reservationResult = reservationService.editReservation(reservation);
 
         if (reservationResult != null) {
@@ -68,6 +68,4 @@ public class AirportFacadeController implements AirportFacade {
             return null;
         }
     }
-
-
 }
