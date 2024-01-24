@@ -19,30 +19,17 @@ public class CheckInTest {
     private final ReservationService reservationService = new ReservationServiceImpl(new ReservationRepositoryImpl(),ticketService, flightService);
     private final CheckInService checkInService = new CheckInServiceImpl(new CheckinRepositorylmpl(flightService, reservationService));
     long id_c = 1;
-    Date date;
     long id_t;
-    float price;
-    Ticket ticket;
-    Flight flight;
-    long id_p = 1;
-    String firstName;
-    String secondName;
-    String passportNumber;
-    Abonament abonament;
-    long id_f = 1;
-    String flightNumber = "1";
-    String source = "a";
-    String destination = "b";
 
     int freePlaces;
     public CheckInTest() {
-        firstName = "Adam";
-        secondName = "Kowalski";
-        passportNumber = "1234";
-        abonament = null;
-        id_p = 1;
 
-        flight = new Flight().builder()
+        String flightNumber = "1";
+        String source = "a";
+        String destination = "b";
+        long id_f = 1;
+
+        Flight flight = new Flight().builder()
                 .flightNumber(flightNumber)
                 .source(source)
                 .id(id_f)
@@ -50,7 +37,13 @@ public class CheckInTest {
                 .freePlaces(20)
                 .build();
 
-        flight = flightService.addFlight(flight);
+       flightService.addFlight(flight);
+
+        String firstName = "Adam";
+        String secondName = "Kowalski";
+        String passportNumber = "1234";
+        Abonament abonament = null;
+        long id_p = 1;
 
         PersonalData personalData = new PersonalData().builder()
                 .passportNumber(passportNumber)
@@ -62,11 +55,30 @@ public class CheckInTest {
 
         userService.addPersonalData(personalData);
 
-        ticket = ticketService.addTicket(new org.pwr.lotnisko.dto.TicketTO(flight.getId(),personalData.getId(),DiscountType.NONE));
+        ticketService.addTicket(new org.pwr.lotnisko.dto.TicketTO(flight.getId(),personalData.getId(),DiscountType.NONE));
+
+        firstName = "Marta";
+        secondName = "Kowalski";
+        passportNumber = "1434";
+        abonament = null;
+        id_p = 2;
+
+        personalData = new PersonalData().builder()
+                .passportNumber(passportNumber)
+                .firstName(firstName)
+                .secondName(secondName)
+                .abonament(abonament)
+                .id(id_p)
+                .build();
+
+        userService.addPersonalData(personalData);
+
+        ticketService.addTicket(new org.pwr.lotnisko.dto.TicketTO(flight.getId(),personalData.getId(),DiscountType.NONE));
     }
 
     public boolean CheckIn() {
-        ticket = ticketService.findById(id_t);
+        Ticket ticket = ticketService.findById(id_t);
+        Date date = new Date();
 
         CheckInTo checkInTo = CheckInTo.builder()
                 .checkInStatus(CheckInStatus.CHECK_IN_PENDING)
@@ -84,9 +96,6 @@ public class CheckInTest {
     }
 }
 /*
-*
-*
-*
 * ---------------- plik testowy ---------------------
 *!define TEST_SYSTEM {slim}
 
@@ -95,6 +104,7 @@ public class CheckInTest {
 |CheckInTest|
 |id_t      | CheckIn?              |
 |1         | true                  |
-|2         | false                 |
+|2         | true                  |
 |1         | false                 |
+|2         | false                 |
 * */
