@@ -52,5 +52,59 @@ class ReservationRepositoryImplTest {
         // then
         assertThat(result).isZero();
     }
+    @Test
+    void editExistingReservation() {
+        //given
+        Flight flight = Flight.builder()
+                .id(1L)
+                .flightNumber("LAX1234")
+                .source("Warsaw")
+                .destination("Los Angeles")
+                .freePlaces(50).build();
+
+        Ticket ticket = Ticket.builder()
+                .price(403f)
+                .discountType(DiscountType.STUDENT)
+                .flight(flight).build();
+
+        Reservation reservation = Reservation.builder()
+                .ticket(ticket)
+                .reservationCost(403f)
+                .date(new Date())
+                .build();
+
+        // when
+        boolean result = reservationRepository.editReservation(reservation);
+
+        // then
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    void editNonExistingReservation() {
+        //given
+        Flight flight = Flight.builder()
+                .id(1L)
+                .flightNumber("LAX1234")
+                .source("Warsaw")
+                .destination("Los Angeles")
+                .freePlaces(50).build();
+
+        Ticket ticket = Ticket.builder()
+                .price(403f)
+                .discountType(DiscountType.STUDENT)
+                .flight(flight).build();
+
+        Reservation reservation = Reservation.builder()
+                .ticket(ticket)
+                .reservationCost(403f)
+                .date(new Date())
+                .build();
+        // when
+        boolean result = reservationRepository.editReservation(reservation);
+
+        // then
+        assertFalse(result, "Non-existing reservation should not be updated");
+    }
 
 }
