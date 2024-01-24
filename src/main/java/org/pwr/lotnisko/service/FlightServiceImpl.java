@@ -1,11 +1,13 @@
 package org.pwr.lotnisko.service;
 
 import lombok.RequiredArgsConstructor;
+import org.pwr.lotnisko.dto.CheckInTo;
 import org.pwr.lotnisko.model.Flight;
 import org.pwr.lotnisko.repository.FlightRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 
@@ -46,5 +48,31 @@ public class FlightServiceImpl implements FlightService {
     private String getRandomAirportAcronym() {
         Random random = new Random();
         return AIRPORT_ACRONYMS.get(random.nextInt(AIRPORT_ACRONYMS.size()));
+    }
+
+    @Override
+    public boolean vadateFlightNumber(CheckInTo checkInTo) {
+        long id = checkInTo.getTicket().getFlight().getId();
+        Flight flight = findById(id);
+        if (flight != null) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public String selectSeat(CheckInTo checkInTo) {
+        long id = checkInTo.getTicket().getFlight().getId();
+        Flight flight = findById(id);
+        String a = String.valueOf(flight.getFreePlaces());
+        flight.setFreePlaces(flight.getFreePlaces() - 1);
+        return a;
+    }
+
+    @Override
+    public void addExtraLuggage(CheckInTo checkInTo) {
+        checkInTo.getTicket().setPrice(checkInTo.getTicket().getPrice()+10);
     }
 }

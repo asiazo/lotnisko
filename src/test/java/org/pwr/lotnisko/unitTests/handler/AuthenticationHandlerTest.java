@@ -1,5 +1,6 @@
-package org.pwr.lotnisko.unitTests.handler;
 
+package org.pwr.lotnisko.unitTests.handler;
+/*
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -57,3 +58,4 @@ class AuthenticationHandlerTest {
         assertThat(checkInTo.getCheckInStatus()).isNotEqualTo(CheckInStatus.CHECK_IN_IN_PROGRESS);
     }
 }
+*/

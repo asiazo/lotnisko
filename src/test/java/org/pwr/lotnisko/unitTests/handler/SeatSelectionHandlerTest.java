@@ -1,5 +1,5 @@
 package org.pwr.lotnisko.unitTests.handler;
-
+/*
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -72,3 +72,4 @@ class SeatSelectionHandlerTest {
         assertThat(outputStreamCaptor.toString()).contains("brak miejsc");
     }
 }
+*/

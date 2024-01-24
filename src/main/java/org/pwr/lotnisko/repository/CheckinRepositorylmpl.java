@@ -4,6 +4,8 @@ import org.pwr.lotnisko.dto.CheckInTo;
 import org.pwr.lotnisko.handler.*;
 import org.pwr.lotnisko.model.CheckIn;
 import org.pwr.lotnisko.model.CheckInStatus;
+import org.pwr.lotnisko.service.FlightService;
+import org.pwr.lotnisko.service.ReservationService;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ public class CheckinRepositorylmpl implements CheckinRepository {
     private List<CheckIn> checkins = new ArrayList<>();
     private  List<CheckInHandler> checkinsHandles = new ArrayList<>();
 
-    public CheckinRepositorylmpl(FlightRepository flightRepository, ReservationRepository reservationRepository) {
+    public CheckinRepositorylmpl(FlightService flightRepository, ReservationService reservationRepository) {
         Validator validator = new Validator(flightRepository, reservationRepository);
         AuthenticationHandler authenticationHandler = new AuthenticationHandler(validator);
         checkinsHandles.add(authenticationHandler);

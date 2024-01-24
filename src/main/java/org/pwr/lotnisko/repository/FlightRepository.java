@@ -18,10 +18,4 @@ public interface FlightRepository {
     List<Flight> findAll();
 
     Optional<Flight> findById(long id);
-
-    boolean vadateFlightNumber(CheckInTo checkInTo);
-
-    String selectSeat(CheckInTo checkInTo);
-
-    void addExtraLuggage(CheckInTo checkInTo);
 }

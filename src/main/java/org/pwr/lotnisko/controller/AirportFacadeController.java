@@ -6,22 +6,24 @@ import org.pwr.lotnisko.api.AirportFacade;
 import org.pwr.lotnisko.dto.CheckInTo;
 import org.pwr.lotnisko.dto.EmployeeTO;
 import org.pwr.lotnisko.dto.ReservationTO;
+import org.pwr.lotnisko.dto.TicketTO;
 import org.pwr.lotnisko.model.Employee;
+import org.pwr.lotnisko.model.Flight;
 import org.pwr.lotnisko.model.Reservation;
-import org.pwr.lotnisko.repository.EmployeeRepositoryImpl;
-import org.pwr.lotnisko.service.CheckInService;
-import org.pwr.lotnisko.service.CheckInServiceImpl;
-import org.pwr.lotnisko.service.EmployeeService;
-import org.pwr.lotnisko.service.EmployeeServiceImpl;
-import org.pwr.lotnisko.service.ReservationService;
+import org.pwr.lotnisko.model.Ticket;
+import org.pwr.lotnisko.repository.*;
+import org.pwr.lotnisko.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 
 public class AirportFacadeController implements AirportFacade {
-    // private final ReservationService reservationService;
+    private final FlightService flightService = new FlightServiceImpl(new FlightRepositoryImpl());
+    private final UserService userService = new UserServiceImpl(new UserRepositoryImpl());
+    private final TicketService ticketService =  new TicketServiceImpl(new TicketRepositoryImpl(),userService ,flightService);
+    private final ReservationService reservationService = new ReservationServiceImpl(new ReservationRepositoryImpl(),ticketService, flightService);
     private final EmployeeService employeeService  = new EmployeeServiceImpl(new EmployeeRepositoryImpl());
-    // private final CheckInService checkInService;
+    private final CheckInService checkInService = new CheckInServiceImpl(new CheckinRepositorylmpl(flightService, reservationService));
 
 
 
@@ -51,11 +53,10 @@ public class AirportFacadeController implements AirportFacade {
 
     @Override
     public CheckInTo checkIn(CheckInTo checkInTo) {
-        // CheckInTo checkInResult = checkInService.processWithCheckin(checkInTo);
-        // if(checkInTo != checkInResult)
-        //     return checkInResult;
-        // return null;
-        return new CheckInTo();
+        CheckInTo checkInResult = checkInService.processWithCheckin(checkInTo);
+        if(checkInTo != checkInResult)
+            return checkInResult;
+        return checkInTo;
     }
 
 

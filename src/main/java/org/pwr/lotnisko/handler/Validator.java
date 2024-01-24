@@ -5,14 +5,16 @@ import org.pwr.lotnisko.model.CheckIn;
 import org.pwr.lotnisko.model.PersonalData;
 import org.pwr.lotnisko.repository.FlightRepository;
 import org.pwr.lotnisko.repository.ReservationRepository;
+import org.pwr.lotnisko.service.FlightService;
+import org.pwr.lotnisko.service.ReservationService;
 
 import java.util.Scanner;
 
 public class Validator {
-    public FlightRepository flightService;
-    protected ReservationRepository reservationService;
+    public FlightService flightService;
+    protected ReservationService reservationService;
 
-    public Validator(FlightRepository flightService, ReservationRepository reservationService) {
+    public Validator(FlightService flightService, ReservationService reservationService) {
         this.flightService = flightService;
         this.reservationService = reservationService;
     }
