@@ -8,7 +8,6 @@ import org.pwr.lotnisko.service.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Setter
 public class dodajNowegoPracownikaTest {
 
@@ -16,6 +15,7 @@ public class dodajNowegoPracownikaTest {
 
     String firstName;
     String secondName;
+    EmployeeRole role;
 
     public dodajNowegoPracownikaTest() {
         this.employeeService = new EmployeeServiceImpl(new EmployeeRepositoryImpl());
@@ -25,10 +25,17 @@ public class dodajNowegoPracownikaTest {
         Employee employee = Employee.builder()
                 .firstName(firstName)
                 .secondName(secondName)
-                .role(EmployeeRole.WORKER)
+                .role(role)
                 .build();
         Employee employeeResult = employeeService.addEmployee(employee);
 
-        return employee.getFirstName().equals("Iwona");
+        if(employeeResult.getFirstName() == firstName && employeeResult.getSecondName() == secondName && employeeResult.getRole() == role)
+            return true;
+
+        return false;
+    }
+
+    public int liczbaPracownikow() {
+        return employeeService.employeeCount();
     }
 }

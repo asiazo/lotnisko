@@ -14,4 +14,6 @@ public interface EmployeeService {
     List<PersonalData> displayFlightPassengers(Flight flight);
     Employee addEmployee(Employee employee);
     Employee deleteEmployee(EmployeeTO employee);
+
+    int employeeCount();
 }

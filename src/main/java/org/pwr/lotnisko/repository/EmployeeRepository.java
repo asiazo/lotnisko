@@ -10,6 +10,7 @@ public interface EmployeeRepository {
     void displayFlightPassengers(Flight flight);
     boolean searchEmployee(EmployeeTO employeeTO);
     int addEmployee(Employee employee);
+    int getEmployeeCount();
     boolean removeEmployee(Employee employee);
     boolean checkIn();
     boolean addUpdate();
