@@ -9,4 +9,6 @@ public interface ReservationRepository
     boolean removeReservation(Reservation reservation);
 
     boolean editReservation(Reservation reservation);
+    Reservation findById(long id);
+    Reservation save(Reservation reservation);
 }
