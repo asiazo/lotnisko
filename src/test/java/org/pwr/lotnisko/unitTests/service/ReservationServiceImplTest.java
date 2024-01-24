@@ -98,4 +98,33 @@ class ReservationServiceImplTest {
         // then
         assertThat(result.isSuccess()).isFalse();
     }
+     @Test
+    void editReservation_shouldNotEditNonExistingReservation() {
+        // given
+        Flight flight = Flight.builder()
+                .id(1L)
+                .flightNumber("LAX1234")
+                .source("Warsaw")
+                .destination("Los Angeles")
+                .freePlaces(50).build();
+
+        Ticket ticket = Ticket.builder()
+                .price(403f)
+                .discountType(DiscountType.STUDENT)
+                .flight(flight).build();
+
+        Reservation nonExistingReservation = new Reservation();
+        nonExistingReservation.setId(2L);
+        nonExistingReservation.setReservationCost(34);
+        nonExistingReservation.setDate(new Date());
+        nonExistingReservation.setTicket(ticket);
+
+        when(reservationRepository.findById(2L)).thenReturn(null);
+
+        // when
+        Reservation result = reservationService.editReservation(nonExistingReservation);
+
+        // then
+        assertNull(result, "Should return null for non-existing reservation");
+    }
 }
