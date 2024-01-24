@@ -55,6 +55,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
     }
 
     @Override
+    public int getEmployeeCount() {
+        return employees.size();
+    }
+
+    @Override
     public boolean removeEmployee(Employee employee) {
         employees.remove(employee);
         return true;
