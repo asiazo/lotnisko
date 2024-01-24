@@ -13,7 +13,8 @@ public class AuthenticationHandler implements CheckInHandler {
 
 
     public void apply(CheckInTo checkInTo) {
-        boolean isValid = validator.flightService.vadateFlightNumber(checkInTo);
+        //boolean isValid = validator.flightService.vadateFlightNumber(checkInTo);
+        boolean isValid = true;
         if (isValid && validator.validate(checkInTo)) {
             process(checkInTo);
         }

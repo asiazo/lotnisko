@@ -26,7 +26,8 @@ public class TicketServiceImpl implements TicketService {
     private static final Map<DiscountType, Float> discounts = Map.of(
             DiscountType.SENIOR, 0.7f,
             DiscountType.STUDENT, 0.51f,
-            DiscountType.WORKER, 0.8f);
+            DiscountType.WORKER, 0.8f,
+            DiscountType.NONE, 1f);
 
     @Override
     public Ticket addTicket(TicketTO ticketTO) {

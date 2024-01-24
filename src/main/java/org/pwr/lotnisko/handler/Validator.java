@@ -1,5 +1,4 @@
 package org.pwr.lotnisko.handler;
-
 import org.pwr.lotnisko.dto.CheckInTo;
 import org.pwr.lotnisko.model.CheckIn;
 import org.pwr.lotnisko.model.PersonalData;
