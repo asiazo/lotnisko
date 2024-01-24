@@ -98,7 +98,7 @@ public class CheckInTest {
 /*
 
 ---------------- plik testowy ---------------------
-!define TEST_SYSTEM {slim}
+!define ChcekInTest {slim}
 
 !path C:\Users\Justy\IdeaProjects\lotnisko2\target\classes
 
