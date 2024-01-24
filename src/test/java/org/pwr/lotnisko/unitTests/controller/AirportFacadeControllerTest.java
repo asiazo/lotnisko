@@ -152,4 +152,37 @@ class AirportFacadeControllerTest {
         result.andExpect(status().isOk())
                 .andExpect(content().string(JsonUtils.getJson(expectedResult)));
     }
+     @Test
+    void edycjaRezerwacji() throws Exception{
+        Flight flight = Flight.builder()
+                .id(1L)
+                .flightNumber("LAX1234")
+                .source("Warsaw")
+                .destination("Los Angeles")
+                .freePlaces(50).build();
+
+        Ticket ticket = Ticket.builder()
+                .price(403f)
+                .discountType(DiscountType.STUDENT)
+                .flight(flight).build();
+
+        Reservation reservation = Reservation.builder()
+                .id(1L)
+                .ticket(ticket)
+                .reservationCost(403f)
+                .date(new Date())
+                .build();
+        when(reservationService.editReservation(ArgumentMatchers.any(Reservation.class)))
+                .thenReturn(reservation);
+
+        // when
+        ResultActions result = mvc.perform(post("/api/v1/edycjaRezerwacji")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtils.getJson(ReservationTO.builder()
+                        .ticket(TicketTO.builder().flightId(1L).discountType(DiscountType.STUDENT)
+                                .flightId(1L).build()).build())));
+
+        // then
+        result.andExpect(status().isOk());
+    }
 }
