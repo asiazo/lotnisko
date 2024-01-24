@@ -11,4 +11,5 @@ public interface TicketService
     boolean removeTicket(Ticket ticket);
 
     Ticket editTicket(Ticket ticket);
+    Ticket findById(final long id);
 }

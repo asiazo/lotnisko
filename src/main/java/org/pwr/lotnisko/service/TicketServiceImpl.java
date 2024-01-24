@@ -59,4 +59,8 @@ public class TicketServiceImpl implements TicketService {
         ticketRepository.editTicket(ticketDto);
         return ticketDto;
     }
+
+    public Ticket findById(final long id) {
+        return ticketRepository.findById(id).get();
+    }
 }

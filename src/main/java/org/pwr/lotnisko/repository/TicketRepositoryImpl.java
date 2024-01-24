@@ -1,5 +1,6 @@
 package org.pwr.lotnisko.repository;
 
+import org.pwr.lotnisko.model.Flight;
 import org.pwr.lotnisko.model.Ticket;
 import org.springframework.stereotype.Service;
 
