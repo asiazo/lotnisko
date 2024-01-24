@@ -96,8 +96,9 @@ public class CheckInTest {
     }
 }
 /*
-* ---------------- plik testowy ---------------------
-*!define TEST_SYSTEM {slim}
+
+---------------- plik testowy ---------------------
+!define TEST_SYSTEM {slim}
 
 !path C:\Users\Justy\IdeaProjects\lotnisko2\target\classes
 
@@ -107,4 +108,6 @@ public class CheckInTest {
 |2         | true                  |
 |1         | false                 |
 |2         | false                 |
-* */
+|3         | false                 |
+
+*/
