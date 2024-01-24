@@ -15,7 +15,13 @@ public class CheckinRepositorylmpl implements CheckinRepository {
     private List<CheckIn> checkins = new ArrayList<>();
     private  List<CheckInHandler> checkinsHandles = new ArrayList<>();
 
-    public CheckinRepositorylmpl(FlightRepository flightRepository, ReservationRepository reservationRepository) {
+    private final FlightRepository flightRepository = new FlightRepositoryImpl();
+
+    private final ReservationRepository reservationRepository = new ReservationRepositoryImpl();
+
+
+
+    public CheckinRepositorylmpl() {
         Validator validator = new Validator(flightRepository, reservationRepository);
         AuthenticationHandler authenticationHandler = new AuthenticationHandler(validator);
         checkinsHandles.add(authenticationHandler);

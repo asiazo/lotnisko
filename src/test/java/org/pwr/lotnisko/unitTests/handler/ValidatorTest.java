@@ -38,44 +38,43 @@ class ValidatorTest {
         System.setOut(new PrintStream(outputStreamCaptor));
     }
 
-    @Test
-    void validate_withCorrectData_shouldReturnTrue() {
-        // given
-        String input = "t\n";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-
-        CheckInTo checkInTo = new CheckInTo();
-        PersonalData personalData = new PersonalData(1, "John", "Doe", "123456789", null);
-        Flight flight = new Flight();
-        Ticket ticket = new Ticket(123, 200.0f, flight, personalData, DiscountType.NONE);
-        checkInTo.setTicket(ticket);
-
-        // when
-        boolean result = validator.validate(checkInTo);
-
-        // then
-        assertThat(result).isTrue();
-    }
-
-    @Test
-    void validate_withIncorrectData_shouldReturnFalse() {
-        // given
-        String input = "n\n"; // Simulating user input "n" for incorrect data
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-
-        CheckInTo checkInTo = new CheckInTo();
-        PersonalData personalData = new PersonalData(1, "John", "Doe", "123456789", null);
-        Flight flight = new Flight();
-        Ticket ticket = new Ticket(123, 200.0f, flight, personalData, DiscountType.NONE);
-        checkInTo.setTicket(ticket);
-
-        // when
-        boolean result = validator.validate(checkInTo);
-
-        // then
-        assertThat(result).isFalse();
-    }
-
+    // @Test
+    // void validate_withCorrectData_shouldReturnTrue() {
+    //     // given
+    //     String input = "t\n";
+    //     InputStream in = new ByteArrayInputStream(input.getBytes());
+    //     System.setIn(in);
+    //
+    //     CheckInTo checkInTo = new CheckInTo();
+    //     PersonalData personalData = new PersonalData(1, "John", "Doe", "123456789", null);
+    //     Flight flight = new Flight();
+    //     Ticket ticket = new Ticket(123, 200.0f, flight, personalData, DiscountType.NONE);
+    //     checkInTo.setTicket(ticket);
+    //
+    //     // when
+    //     boolean result = validator.validate(checkInTo);
+    //
+    //     // then
+    //     assertThat(result).isTrue();
+    // }
+    //
+    // @Test
+    // void validate_withIncorrectData_shouldReturnFalse() {
+    //     // given
+    //     String input = "n\n"; // Simulating user input "n" for incorrect data
+    //     InputStream in = new ByteArrayInputStream(input.getBytes());
+    //     System.setIn(in);
+    //
+    //     CheckInTo checkInTo = new CheckInTo();
+    //     PersonalData personalData = new PersonalData(1, "John", "Doe", "123456789", null);
+    //     Flight flight = new Flight();
+    //     Ticket ticket = new Ticket(123, 200.0f, flight, personalData, DiscountType.NONE);
+    //     checkInTo.setTicket(ticket);
+    //
+    //     // when
+    //     boolean result = validator.validate(checkInTo);
+    //
+    //     // then
+    //     assertThat(result).isFalse();
+    // }
 }

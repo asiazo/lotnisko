@@ -10,7 +10,6 @@ import org.pwr.lotnisko.repository.TicketRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
-import java.util.Random;
 
 
 @Service
@@ -46,7 +45,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     private float getTicketPrice(final DiscountType discountType) {
-        return 100 + (new Random().nextFloat() * (1000 - 100)) * discounts.get(discountType);
+        return 1000 * discounts.get(discountType);
     }
 
     @Override

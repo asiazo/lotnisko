@@ -14,8 +14,6 @@ public class FlightRepositoryImpl implements FlightRepository {
 
     private final List<Flight> flights = new ArrayList<>();
 
-
-
     @Override
     public int addFlight(Flight flight) {
         flights.add(flight);
@@ -64,6 +62,6 @@ public class FlightRepositoryImpl implements FlightRepository {
 
     @Override
     public void addExtraLuggage(CheckInTo checkInTo) {
-        checkInTo.getTicket().setPrice(checkInTo.getTicket().getPrice()+10);
+        checkInTo.getTicket().setPrice(checkInTo.getTicket().getPrice() + 10);
     }
 }

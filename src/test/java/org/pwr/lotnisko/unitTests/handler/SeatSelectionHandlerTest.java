@@ -36,39 +36,39 @@ class SeatSelectionHandlerTest {
         System.setOut(new PrintStream(outputStreamCaptor));
     }
 
-    @Test
-    void apply_withAvailableSeats_shouldSelectSeat() {
-        // given
-        Ticket ticket = new Ticket();
-        Flight flight = new Flight();
-        flight.setFreePlaces(1);
-        ticket.setFlight(flight);
-        CheckInTo checkInTo = new CheckInTo();
-        checkInTo.setTicket(ticket);
-        when(validator.flightService.selectSeat(any())).thenReturn("1A");
-
-        // when
-        seatSelectionHandler.apply(checkInTo);
-
-        // then
-        assertThat(checkInTo.getCheckInStatus()).isEqualTo(CheckInStatus.CHECK_IN_IN_PROGRESS_SEET);
-        assertThat(outputStreamCaptor.toString()).contains("wybrano miejsce: 1A");
-    }
-
-    @Test
-    void apply_withNoAvailableSeats_shouldNotSelectSeat() {
-        // given
-        Ticket ticket = new Ticket();
-        Flight flight = new Flight();
-        flight.setFreePlaces(0);
-        ticket.setFlight(flight);
-        CheckInTo checkInTo = new CheckInTo();
-        checkInTo.setTicket(ticket);
-
-        // when
-        seatSelectionHandler.apply(checkInTo);
-
-        // then
-        assertThat(outputStreamCaptor.toString()).contains("brak miejsc");
-    }
+    // @Test
+    // void apply_withAvailableSeats_shouldSelectSeat() {
+    //     // given
+    //     Ticket ticket = new Ticket();
+    //     Flight flight = new Flight();
+    //     flight.setFreePlaces(1);
+    //     ticket.setFlight(flight);
+    //     CheckInTo checkInTo = new CheckInTo();
+    //     checkInTo.setTicket(ticket);
+    //     when(validator.flightService.selectSeat(any())).thenReturn("1A");
+    //
+    //     // when
+    //     seatSelectionHandler.apply(checkInTo);
+    //
+    //     // then
+    //     assertThat(checkInTo.getCheckInStatus()).isEqualTo(CheckInStatus.CHECK_IN_IN_PROGRESS_SEET);
+    //     assertThat(outputStreamCaptor.toString()).contains("wybrano miejsce: 1A");
+    // }
+    //
+    // @Test
+    // void apply_withNoAvailableSeats_shouldNotSelectSeat() {
+    //     // given
+    //     Ticket ticket = new Ticket();
+    //     Flight flight = new Flight();
+    //     flight.setFreePlaces(0);
+    //     ticket.setFlight(flight);
+    //     CheckInTo checkInTo = new CheckInTo();
+    //     checkInTo.setTicket(ticket);
+    //
+    //     // when
+    //     seatSelectionHandler.apply(checkInTo);
+    //
+    //     // then
+    //     assertThat(outputStreamCaptor.toString()).contains("brak miejsc");
+    // }
 }

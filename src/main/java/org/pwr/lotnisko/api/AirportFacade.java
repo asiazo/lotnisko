@@ -3,6 +3,7 @@ package org.pwr.lotnisko.api;
 import org.pwr.lotnisko.dto.CheckInTo;
 import org.pwr.lotnisko.dto.EmployeeTO;
 import org.pwr.lotnisko.dto.ReservationTO;
+import org.pwr.lotnisko.dto.TicketTO;
 import org.pwr.lotnisko.model.Employee;
 import org.pwr.lotnisko.model.Reservation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface AirportFacade {
 
     @PostMapping("zakupbiletu")
-    Reservation zakupBiletu(@RequestBody ReservationTO reservationTO);
+    Reservation zakupBiletu(TicketTO ticketTO);
 
     @PostMapping("dodajNowegoPracownika")
     Employee dodajNowegoPracownika(@RequestBody Employee employee);

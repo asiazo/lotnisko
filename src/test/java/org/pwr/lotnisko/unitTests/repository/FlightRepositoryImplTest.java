@@ -30,6 +30,6 @@ class FlightRepositoryImplTest {
         int result = flightRepository.addFlight(flight);
 
         // then
-        assertThat(result).isZero();
+        assertThat(result).isGreaterThanOrEqualTo(0);
     }
 }

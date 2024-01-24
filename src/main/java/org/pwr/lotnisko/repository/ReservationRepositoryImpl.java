@@ -13,7 +13,7 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     private List<Reservation> reservations = new ArrayList<>();
 
     @Override
-    public int addReservation(Reservation reservation) {
+    public long addReservation(Reservation reservation) {
         reservations.add(reservation);
         return reservations.indexOf(reservation);
     }
@@ -47,7 +47,7 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
     @Override
     public Reservation save(Reservation reservation) {
-        int id = addReservation(reservation);
+        long id = addReservation(reservation);
         reservation.setId(id);
         return reservation;
     }

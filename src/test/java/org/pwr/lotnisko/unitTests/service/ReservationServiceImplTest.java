@@ -17,7 +17,10 @@ import org.pwr.lotnisko.service.FlightService;
 import org.pwr.lotnisko.service.ReservationServiceImpl;
 import org.pwr.lotnisko.service.TicketService;
 
+import java.util.Date;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -37,12 +40,10 @@ class ReservationServiceImplTest {
     @InjectMocks
     private ReservationServiceImpl reservationService;
 
-    private final ReservationTO contentTO = ReservationTO.builder()
-            .ticket(TicketTO.builder()
-                    .discountType(DiscountType.STUDENT)
-                    .flightId(1L)
-                    .userId(1L)
-                    .build())
+    private final TicketTO contentTO = TicketTO.builder()
+            .discountType(DiscountType.STUDENT)
+            .flightId(1L)
+            .userId(1L)
             .build();
 
     @BeforeEach
@@ -67,8 +68,8 @@ class ReservationServiceImplTest {
                 .flight(flight).build();
 
         when(flightService.findById(1)).thenReturn(flight);
-        when(ticketService.addTicket(contentTO.getTicket())).thenReturn(ticket);
-        when(reservationRepository.addReservation(any())).thenReturn(1);
+        when(ticketService.addTicket(contentTO)).thenReturn(ticket);
+        when(reservationRepository.addReservation(any())).thenReturn(1L);
 
         // when
         Reservation result = reservationService.addReservation(contentTO);

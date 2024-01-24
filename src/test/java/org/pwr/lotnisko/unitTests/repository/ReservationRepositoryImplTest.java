@@ -12,6 +12,7 @@ import org.pwr.lotnisko.model.Ticket;
 import org.pwr.lotnisko.repository.ReservationRepositoryImpl;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.Date;
 
@@ -47,7 +48,7 @@ class ReservationRepositoryImplTest {
                 .date(new Date())
                 .build();
         // when
-        int result = reservationRepository.addReservation(reservation);
+        long result = reservationRepository.addReservation(reservation);
 
         // then
         assertThat(result).isZero();

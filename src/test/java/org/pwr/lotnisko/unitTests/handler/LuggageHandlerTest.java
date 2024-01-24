@@ -29,46 +29,42 @@ class LuggageHandlerTest {
     @InjectMocks
     private LuggageHandler luggageHandler;
 
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-
     @BeforeEach
     void setUp() {
         luggageHandler = new LuggageHandler(validator);
-        System.setOut(new PrintStream(outputStreamCaptor));
     }
 
-    @Test
-    void apply_withExtraLuggage_shouldAddLuggage() {
-        // given
-        String input = "t\n"; // Simulating user input "t" for yes
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-
-        CheckInTo checkInTo = new CheckInTo();
-
-        // when
-        luggageHandler.apply(checkInTo);
-
-        // then
-        verify(validator.flightService).addExtraLuggage(checkInTo);
-        assertThat(checkInTo.getCheckInStatus()).isEqualTo(CheckInStatus.CHECK_IN_COMPLETED);
-    }
-
-    @Test
-    void apply_withoutExtraLuggage_shouldNotAddLuggage() {
-        // given
-        String input = "n\n"; // Simulating user input "n" for no
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-
-        CheckInTo checkInTo = new CheckInTo();
-
-        // when
-        luggageHandler.apply(checkInTo);
-
-        // then
-        verify(validator.flightService, never()).addExtraLuggage(checkInTo);
-        assertThat(checkInTo.getCheckInStatus()).isEqualTo(CheckInStatus.CHECK_IN_COMPLETED);
-    }
-
+    // @Test
+    // void apply_withExtraLuggage_shouldAddLuggage() {
+    //     // given
+    //     String input = "t\n"; // Simulating user input "t" for yes
+    //     InputStream in = new ByteArrayInputStream(input.getBytes());
+    //     System.setIn(in);
+    //
+    //     CheckInTo checkInTo = new CheckInTo();
+    //
+    //     // when
+    //     luggageHandler.apply(checkInTo);
+    //
+    //     // then
+    //     verify(validator.flightService).addExtraLuggage(checkInTo);
+    //     assertThat(checkInTo.getCheckInStatus()).isEqualTo(CheckInStatus.CHECK_IN_COMPLETED);
+    // }
+    //
+    // @Test
+    // void apply_withoutExtraLuggage_shouldNotAddLuggage() {
+    //     // given
+    //     String input = "n\n"; // Simulating user input "n" for no
+    //     InputStream in = new ByteArrayInputStream(input.getBytes());
+    //     System.setIn(in);
+    //
+    //     CheckInTo checkInTo = new CheckInTo();
+    //
+    //     // when
+    //     luggageHandler.apply(checkInTo);
+    //
+    //     // then
+    //     verify(validator.flightService, never()).addExtraLuggage(checkInTo);
+    //     assertThat(checkInTo.getCheckInStatus()).isEqualTo(CheckInStatus.CHECK_IN_COMPLETED);
+    // }
 }

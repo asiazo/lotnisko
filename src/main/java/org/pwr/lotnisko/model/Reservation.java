@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Reservation {
 
-    long id;
+    Long id;
 
     Date date;
 
@@ -25,7 +25,5 @@ public class Reservation {
 
     @JsonIgnore
     boolean success;
-
-    //PersonalData user;
-    //ReservationStatus reservationStatus;
+    ReservationStatus reservationStatus;
 }
