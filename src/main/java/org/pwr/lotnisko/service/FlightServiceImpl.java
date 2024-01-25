@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.pwr.lotnisko.dto.CheckInTo;
 import org.pwr.lotnisko.model.Flight;
 import org.pwr.lotnisko.repository.FlightRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

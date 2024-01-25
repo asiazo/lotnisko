@@ -17,13 +17,7 @@ public class LuggageHandler implements CheckInHandler {
 
     @Override
     public void apply(CheckInTo checkInTo) {
-        // Tutaj logika aplikowania zmian związanych z bagażem
-        Scanner myObj = new Scanner(System.in);
-        System.out.print("Czy klijent chce dodatkowy bagaż: t - tak,  n - nie");
-        String decision = myObj.nextLine();
-        if (decision == "t") {
-            validator.flightService.addExtraLuggage(checkInTo);
-        }
+        validator.flightService.addExtraLuggage(checkInTo);
         process(checkInTo);
     }
 

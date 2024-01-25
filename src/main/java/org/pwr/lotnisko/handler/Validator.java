@@ -11,7 +11,9 @@ import org.pwr.lotnisko.service.ReservationService;
 import java.util.Scanner;
 
 public class Validator {
+
     public FlightService flightService;
+
     protected ReservationService reservationService;
 
     public Validator(FlightService flightService, ReservationService reservationService) {
@@ -24,13 +26,6 @@ public class Validator {
         System.out.print("Dane: ");
         System.out.print(personalData.getFirstName() + " ");
         System.out.print(personalData.getSecondName() + " ");
-        System.out.println(personalData.getPassportNumber() + " ");
-        Scanner myObj = new Scanner(System.in);
-        System.out.print("Czy są poprawne: t - tak,  n - nie");
-        String decision = myObj.nextLine();
-        if (decision == "t")
-            return true;
-        else
-            return false;
-        }
+        return true;
     }
+}

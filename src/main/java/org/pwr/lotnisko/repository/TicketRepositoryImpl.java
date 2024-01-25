@@ -16,7 +16,6 @@ public class TicketRepositoryImpl implements TicketRepository {
 
     @Override
     public int addTicket(Ticket ticket) {
-        ticket.setId(tickets.size());
         tickets.add(ticket);
         return tickets.indexOf(ticket);
     }
