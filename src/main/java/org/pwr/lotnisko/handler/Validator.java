@@ -1,22 +1,17 @@
 package org.pwr.lotnisko.handler;
 
 import org.pwr.lotnisko.dto.CheckInTo;
-import org.pwr.lotnisko.model.CheckIn;
 import org.pwr.lotnisko.model.PersonalData;
-import org.pwr.lotnisko.repository.FlightRepository;
-import org.pwr.lotnisko.repository.ReservationRepository;
 import org.pwr.lotnisko.service.FlightService;
 import org.pwr.lotnisko.service.ReservationService;
 
 import java.util.List;
-import java.util.Scanner;
+
 
 public class Validator {
 
     public FlightService flightService;
-
     protected ReservationService reservationService;
-
     private List<PersonalData> personalDataList;
 
     public Validator(FlightService flightService, ReservationService reservationService) {

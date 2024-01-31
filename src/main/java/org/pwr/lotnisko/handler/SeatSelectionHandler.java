@@ -23,10 +23,8 @@ public class SeatSelectionHandler implements CheckInHandler {
         Flight flight = ticket.getFlight();
         int free = flight.getFreePlaces();
         if (free > 0) {
-            process(checkInTo);
             String seet = validator.flightService.selectSeat(checkInTo);
-        }
-        else {
+            process(checkInTo);
         }
         return checkInTo;
     }

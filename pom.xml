@@ -79,7 +79,7 @@
 									<target>
 										<echo taskname="fitnesse" message="Starting FitNesse..."/>
 										<java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true">
-											<arg line="-p 8080"/>
+											<arg line="-p 8085"/>
 										</java>
 									</target>
 								</configuration>

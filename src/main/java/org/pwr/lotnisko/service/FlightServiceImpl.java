@@ -55,12 +55,7 @@ public class FlightServiceImpl implements FlightService {
     public boolean vadateFlightNumber(CheckInTo checkInTo) {
         long id = checkInTo.getTicket().getFlight().getId();
         Flight flight = findById(id);
-        if (flight != null) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return flight != null;
     }
 
     @Override
