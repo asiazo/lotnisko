@@ -17,7 +17,7 @@ public class SeatSelectionHandler implements CheckInHandler {
     }
 
     @Override
-    public void apply(CheckInTo checkInTo) {
+    public CheckInTo apply(CheckInTo checkInTo) {
         // Tutaj logika aplikowania zmian związanych z wyborem miejsca
         Ticket ticket = checkInTo.getTicket();
         Flight flight = ticket.getFlight();
@@ -25,16 +25,15 @@ public class SeatSelectionHandler implements CheckInHandler {
         if (free > 0) {
             process(checkInTo);
             String seet = validator.flightService.selectSeat(checkInTo);
-            System.out.print("wybrano miejsce: ");
-            System.out.println(seet);
         }
         else {
-            System.out.println("brak miejsc");
         }
+        return checkInTo;
     }
 
     @Override
-    public void process(CheckInTo checkInTo) {
+    public CheckInTo process(CheckInTo checkInTo) {
         checkInTo.setCheckInStatus(CheckInStatus.CHECK_IN_IN_PROGRESS_SEET);
+        return checkInTo;
     }
 }

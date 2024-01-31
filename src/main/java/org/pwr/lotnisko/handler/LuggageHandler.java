@@ -16,13 +16,15 @@ public class LuggageHandler implements CheckInHandler {
     }
 
     @Override
-    public void apply(CheckInTo checkInTo) {
+    public CheckInTo apply(CheckInTo checkInTo) {
         validator.flightService.addExtraLuggage(checkInTo);
         process(checkInTo);
+        return checkInTo;
     }
 
     @Override
-    public void process(CheckInTo checkInTo) {
+    public CheckInTo process(CheckInTo checkInTo) {
         checkInTo.setCheckInStatus(CheckInStatus.CHECK_IN_COMPLETED);
+        return checkInTo;
     }
 }

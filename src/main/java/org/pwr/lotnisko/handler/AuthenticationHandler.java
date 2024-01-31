@@ -12,15 +12,17 @@ public class AuthenticationHandler implements CheckInHandler {
     }
 
 
-    public void apply(CheckInTo checkInTo) {
+    public CheckInTo apply(CheckInTo checkInTo) {
         boolean isValid = validator.flightService.vadateFlightNumber(checkInTo);
         if (isValid && validator.validate(checkInTo)) {
             process(checkInTo);
         }
+        return checkInTo;
     }
 
     @Override
-    public void process(CheckInTo checkInTo) {
+    public CheckInTo process(CheckInTo checkInTo) {
         checkInTo.setCheckInStatus(CheckInStatus.CHECK_IN_IN_PROGRESS);
+        return checkInTo;
     }
 }

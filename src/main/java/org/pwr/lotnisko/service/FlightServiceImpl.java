@@ -73,7 +73,5 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public void addExtraLuggage(CheckInTo checkInTo) {
-        checkInTo.getTicket().setPrice(checkInTo.getTicket().getPrice()+10);
-    }
+    public void addExtraLuggage(CheckInTo checkInTo) {}
 }

@@ -8,6 +8,7 @@ import org.pwr.lotnisko.repository.ReservationRepository;
 import org.pwr.lotnisko.service.FlightService;
 import org.pwr.lotnisko.service.ReservationService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Validator {
@@ -16,16 +17,25 @@ public class Validator {
 
     protected ReservationService reservationService;
 
+    private List<PersonalData> personalDataList;
+
     public Validator(FlightService flightService, ReservationService reservationService) {
         this.flightService = flightService;
         this.reservationService = reservationService;
     }
 
     public boolean validate(CheckInTo checkInTo) {
-        PersonalData personalData = checkInTo.getTicket().getPersonalData();
-        System.out.print("Dane: ");
-        System.out.print(personalData.getFirstName() + " ");
-        System.out.print(personalData.getSecondName() + " ");
-        return true;
+        long id_p = checkInTo.getTicket().getPersonalData().getId();
+        boolean exists = personalDataList.stream()
+                .anyMatch(person -> person.getId() == id_p);
+
+        if (!exists) {
+            // Osoba nie jest na liście, więc dodajemy ją
+            personalDataList.add(checkInTo.getTicket().getPersonalData());
+            return true;
+        }
+
+        // Osoba jest już na liście
+        return false;
     }
 }

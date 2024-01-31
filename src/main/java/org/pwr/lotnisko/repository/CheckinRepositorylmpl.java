@@ -30,18 +30,17 @@ public class CheckinRepositorylmpl implements CheckinRepository {
     @Override
     public CheckInTo processWithCheckin(CheckInTo checkInTo) {
         checkInTo.setCheckInStatus(CheckInStatus.CHECK_IN_PENDING);
-        checkinsHandles.get(0).apply(checkInTo);
-        int id = checkins.size();
+        checkInTo = checkinsHandles.get(0).apply(checkInTo);
         if (checkInTo.getCheckInStatus() == CheckInStatus.CHECK_IN_IN_PROGRESS) {
             CheckIn check = new CheckIn(checkInTo.getId(), checkInTo.getDate(), checkInTo.getTicket(), checkInTo.getCheckInStatus());
             checkins.add(check);
-            checkinsHandles.get(1).apply(checkInTo);
+            checkInTo = checkinsHandles.get(1).apply(checkInTo);
         }
         if (checkInTo.getCheckInStatus() == CheckInStatus.CHECK_IN_IN_PROGRESS_SEET) {
-            checkinsHandles.get(2).apply(checkInTo);
+            checkInTo = checkinsHandles.get(2).apply(checkInTo);
         }
         if (checkInTo.getCheckInStatus() == CheckInStatus.CHECK_IN_COMPLETED) {
-            checkins.get(id).setCheckInStatus(CheckInStatus.CHECK_IN_COMPLETED);
+            checkins.get((int)checkInTo.getId()).setCheckInStatus(CheckInStatus.CHECK_IN_COMPLETED);
         }
         return checkInTo;
     }

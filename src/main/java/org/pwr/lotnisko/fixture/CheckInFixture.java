@@ -108,12 +108,12 @@ public class CheckInFixture {
 /*
 
 ---------------- plik testowy ---------------------
-!define ChcekInTest {slim}
+!define CheckInFixture {slim}
 
 !path C:\Users\Justy\IdeaProjects\lotnisko2\target\classes
 
-|org.pwr.lotnisko.CheckInTest|
-|id_t      | CheckIn?              |
+|org.pwr.lotnisko.fizture.CheckInFixture|
+|id_t      | checkIn?              |
 |1         | true                  |
 |2         | true                  |
 |1         | false                 |
