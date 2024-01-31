@@ -4,13 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.pwr.lotnisko.dto.ReservationTO;
 import org.pwr.lotnisko.model.Flight;
 import org.pwr.lotnisko.model.Reservation;
-import org.pwr.lotnisko.model.ReservationStatus;
 import org.pwr.lotnisko.model.Ticket;
 import org.pwr.lotnisko.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Map;
 import java.util.Random;
 
 
@@ -51,30 +49,23 @@ public class ReservationServiceImpl implements ReservationService {
     public Reservation deleteReservation(Reservation reservation) {
         return null;
     }
-@Override
+
+    @Override
     public Reservation editReservation(Reservation reservation) {
         Reservation existingReservation = reservationRepository.findById(reservation.getId());
-        if (existingReservation != null) {
-            existingReservation.setDate(reservation.getDate());
-            existingReservation.setTicket(reservation.getTicket());
-            existingReservation.setReservationCost(reservation.getReservationCost());
-            existingReservation.getTicket().setFlight(reservation.getTicket().getFlight());
-            existingReservation.getTicket().setPersonalData(reservation.getTicket().getPersonalData());
 
-            Ticket existingTicket = existingReservation.getTicket();
-            Ticket newTicket = reservation.getTicket();
-            existingTicket.setPrice(newTicket.getPrice());
-            existingTicket.setDiscountType(newTicket.getDiscountType());
-            existingTicket.setPersonalData(newTicket.getPersonalData());
-            existingTicket.setFlight(newTicket.getFlight());
-
-            return reservationRepository.save(existingReservation);
-        } else {
+        if (existingReservation == null) {
             return null;
         }
+
+        existingReservation.setDate(reservation.getDate());
+        existingReservation.setTicket(reservation.getTicket());
+        existingReservation.setReservationCost(reservation.getReservationCost());
+        return reservationRepository.save(existingReservation);
     }
 
     @Override
     public Reservation processReservation(Reservation reservation) {
-        return reservationRepository.save(reservation); }
+        return reservationRepository.save(reservation);
+    }
 }

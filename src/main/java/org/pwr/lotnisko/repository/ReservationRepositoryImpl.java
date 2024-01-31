@@ -10,6 +10,11 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
     private List<Reservation> reservations = new ArrayList<>();
 
+    public ReservationRepositoryImpl() {
+        reservations.add(Reservation.builder().id(1).build());
+        reservations.add(Reservation.builder().id(2).build());
+    }
+
     @Override
     public int addReservation(Reservation reservation) {
         reservations.add(reservation);
@@ -48,6 +53,7 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     @Override
     public Reservation save(Reservation reservation)
     {
-        return reservationRepository.save(reservation);
+        this.addReservation(reservation);
+        return reservation;
     }
 }
